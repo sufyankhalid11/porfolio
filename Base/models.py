@@ -1,6 +1,16 @@
 import os
 from django.db import models
 
+from cloudinary_storage.storage import MediaCloudinaryStorage
+
+class RawMediaCloudinaryStorage(MediaCloudinaryStorage):
+    """
+    Yeh class non-image files (jaise PDF, DOCX) ko Cloudinary par 
+    raw / resource_type='auto' par save karti hai taake format kharab na ho.
+    """
+    def _get_resource_type(self):
+        return "auto"
+
 class UserProfile(models.Model):
     name = models.CharField(max_length=100, default="Muhammad Sufyan Khalid")
     title = models.CharField(max_length=200, default="Data Science Student & Full-Stack Developer")
@@ -9,6 +19,8 @@ class UserProfile(models.Model):
     resume = models.FileField(upload_to='resumes/', blank=True, null=True)
     github_url = models.URLField(blank=True, null=True)
     linkedin_url = models.URLField(blank=True, null=True)
+    
+    resume = models.FileField(upload_to='resumes/', storage=RawMediaCloudinaryStorage())
 
     def __str__(self):
         return self.name
