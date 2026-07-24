@@ -14,19 +14,20 @@ class UserProfile(models.Model):
     profile_image = models.ImageField(upload_to='profile/', blank=True, null=True)
     github_url = models.URLField(blank=True, null=True)
     linkedin_url = models.URLField(blank=True, null=True)
-    
-    resume = models.FileField(upload_to='resumes/', storage=RawMediaCloudinaryStorage())
+    resume = models.FileField(upload_to='resumes/', blank=True, null=True)
+
+    @property
+    def resume_url(self):
+        if self.resume:
+            url = self.resume.url
+            # Agar Cloudinary URL mein /image/upload/ aa raha hai toh usay /raw/upload/ ya /auto/upload/ mein badal dein
+            if '/image/upload/' in url:
+                return url.replace('/image/upload/', '/raw/upload/')
+            return url
+        return ''
 
     def __str__(self):
         return self.name
-
-    def save(self, *args, **kwargs):
-        if self.pk:
-            old_instance = UserProfile.objects.filter(pk=self.pk).first()
-            if old_instance and old_instance.profile_image and old_instance.profile_image != self.profile_image:
-                if os.path.isfile(old_instance.profile_image.path):
-                    os.remove(old_instance.profile_image.path)
-        super().save(*args, **kwargs)
 
 
 class Project(models.Model):
