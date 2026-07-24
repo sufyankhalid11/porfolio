@@ -3,9 +3,6 @@ from django.db import models
 
 from cloudinary_storage.storage import MediaCloudinaryStorage
 
-class RawMediaCloudinaryStorage(MediaCloudinaryStorage):
-    def _get_resource_type(self, *args, **kwargs):
-        return "auto"
 
 class UserProfile(models.Model):
     name = models.CharField(max_length=100, default="Muhammad Sufyan Khalid")
@@ -19,11 +16,7 @@ class UserProfile(models.Model):
     @property
     def resume_url(self):
         if self.resume:
-            url = self.resume.url
-            # Agar URL /auto/upload/ par hai aur aakhir mein .pdf nahi hai, toh .pdf add kar dein
-            if '/auto/upload/' in url and not url.endswith('.pdf'):
-                url += '.pdf'
-            return url
+            return self.resume.url
         return ''
 
     def __str__(self):
