@@ -233,8 +233,8 @@
                 <div class="d-flex gap-3 flex-wrap">
                     <a href="#projects" class="btn btn-dark-custom btn-lg shadow-sm">Explore Works</a>
                     
-                    {% if profile.resume %}
-                        <a href="{{ profile.resumes.resume.pdf }}" download class="btn btn-outline-dark btn-lg rounded-pill px-4">
+                    {% if resumes %}
+                        <a href="{{ resumes.resume.pdf }}" download class="btn btn-outline-dark btn-lg rounded-pill px-4">
                             <i class="fa-solid fa-file-arrow-down me-2"></i> Download CV
                         </a>
                     {% endif %}
