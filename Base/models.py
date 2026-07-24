@@ -1,7 +1,7 @@
 import os
 from django.db import models
 
-from cloudinary_storage.storage import MediaCloudinaryStorage
+from cloudinary_storage.storage import MediaCloudinaryStorage, RawMediaCloudinaryStorage
 
 
 class UserProfile(models.Model):
@@ -11,7 +11,12 @@ class UserProfile(models.Model):
     profile_image = models.ImageField(upload_to='profile/', blank=True, null=True)
     github_url = models.URLField(blank=True, null=True)
     linkedin_url = models.URLField(blank=True, null=True)
-    resume = models.FileField(upload_to='resumes/', blank=True, null=True)
+    resume = models.FileField(
+        upload_to='resumes/',
+        storage=RawMediaCloudinaryStorage(),   # <-- key fix: non-image files need "raw" resource type
+        blank=True,
+        null=True,
+    )
 
     @property
     def resume_url(self):
@@ -21,7 +26,6 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return self.name
-
 
 class Project(models.Model):
     title = models.CharField(max_length=100)
