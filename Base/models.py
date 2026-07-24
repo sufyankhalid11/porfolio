@@ -19,11 +19,7 @@ class UserProfile(models.Model):
     @property
     def resume_url(self):
         if self.resume:
-            url = self.resume.url
-            # Agar Cloudinary URL mein /image/upload/ aa raha hai toh usay /raw/upload/ ya /auto/upload/ mein badal dein
-            if '/image/upload/' in url:
-                return url.replace('/image/upload/', '/raw/upload/')
-            return url
+            return self.resume.url.replace('/image/upload/', '/auto/upload/')
         return ''
 
     def __str__(self):
