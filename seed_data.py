@@ -14,7 +14,7 @@ def run_seeder():
     skills = [
         {'name': 'Python', 'category': 'language', 'proficiency_icon': 'fab fa-python'},
         {'name': 'C++', 'category': 'language', 'proficiency_icon': 'fas fa-code'},
-        {'name': 'JS', 'category': 'language', 'proficiency_icon': 'fab fa-js'},
+        {'name': 'JS', 'category': 'language', 'proficiency_icon': 'c'},
         {'name': 'DJANGO', 'category': 'backend', 'proficiency_icon': 'fas fa-server'},
         {'name': 'PostgreSQL', 'category': 'database', 'proficiency_icon': 'fas fa-database'},
     ]
