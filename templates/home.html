@@ -233,11 +233,11 @@
                 <div class="d-flex gap-3 flex-wrap">
                     <a href="#projects" class="btn btn-dark-custom btn-lg shadow-sm">Explore Works</a>
                     
-                    {% if resumes %}
-                        <a href="{{ resumes.resume.pdf }}" download class="btn btn-outline-dark btn-lg rounded-pill px-4">
+                    
+                        <a href="{{ media.resumes.resume.pdf }}" download class="btn btn-outline-dark btn-lg rounded-pill px-4">
                             <i class="fa-solid fa-file-arrow-down me-2"></i> Download CV
                         </a>
-                    {% endif %}
+                   
 
                     <a href="{% url 'admin:index' %}" target="_blank" class="btn btn-outline-secondary btn-lg rounded-pill px-4">Admin Dashboard</a>
                 </div>
