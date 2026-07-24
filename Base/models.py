@@ -1,22 +1,21 @@
 import os
 from django.db import models
 
-# from cloudinary_storage.storage import MediaCloudinaryStorage
+from cloudinary_storage.storage import MediaCloudinaryStorage
 
-# class RawMediaCloudinaryStorage(MediaCloudinaryStorage):
-#     def _get_resource_type(self, *args, **kwargs):
-#         return "auto"
+class RawMediaCloudinaryStorage(MediaCloudinaryStorage):
+    def _get_resource_type(self, *args, **kwargs):
+        return "auto"
 
 class UserProfile(models.Model):
     name = models.CharField(max_length=100, default="Muhammad Sufyan Khalid")
     title = models.CharField(max_length=200, default="Data Science Student & Full-Stack Developer")
     bio = models.TextField(default="Passionate backend and full-stack developer specializing in building scalable web applications.")
     profile_image = models.ImageField(upload_to='profile/', blank=True, null=True)
-    resume = models.FileField(upload_to='resumes/', blank=True, null=True)
     github_url = models.URLField(blank=True, null=True)
     linkedin_url = models.URLField(blank=True, null=True)
     
-    # resume = models.FileField(upload_to='resumes/', storage=RawMediaCloudinaryStorage())
+    resume = models.FileField(upload_to='resumes/', storage=RawMediaCloudinaryStorage())
 
     def __str__(self):
         return self.name
