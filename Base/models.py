@@ -1,11 +1,11 @@
 import os
 from django.db import models
 
-from cloudinary_storage.storage import MediaCloudinaryStorage
+# from cloudinary_storage.storage import MediaCloudinaryStorage
 
-class RawMediaCloudinaryStorage(MediaCloudinaryStorage):
-    def _get_resource_type(self, *args, **kwargs):
-        return "auto"
+# class RawMediaCloudinaryStorage(MediaCloudinaryStorage):
+#     def _get_resource_type(self, *args, **kwargs):
+#         return "auto"
 
 class UserProfile(models.Model):
     name = models.CharField(max_length=100, default="Muhammad Sufyan Khalid")
@@ -16,7 +16,7 @@ class UserProfile(models.Model):
     github_url = models.URLField(blank=True, null=True)
     linkedin_url = models.URLField(blank=True, null=True)
     
-    resume = models.FileField(upload_to='resumes/', storage=RawMediaCloudinaryStorage())
+    # resume = models.FileField(upload_to='resumes/', storage=RawMediaCloudinaryStorage())
 
     def __str__(self):
         return self.name
