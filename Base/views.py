@@ -12,6 +12,8 @@ def get_github_stats(username="sufyankhalid11"):
         pass
     return None
 
+from .models import BlogPost, ContactMessage, Project, UserProfile, Skill, Experience  # Jo models pehle se hain unke sath BlogPost add kar lein
+
 def home(request):
     if request.method == 'POST':
         name = request.POST.get('name')
@@ -28,12 +30,16 @@ def home(request):
     experiences = Experience.objects.all().order_by('-created_at')
     github_data = get_github_stats("sufyankhalid11")
     
+    # Yahan blogs fetch kiye hain:
+    posts = BlogPost.objects.all().order_by('-created_at')
+    
     context = {
         'projects': projects,
         'profile': profile,
         'skills': skills,
         'experiences': experiences,
         'github_data': github_data,
+        'posts': posts,  # <--- Yeh line add ki hai
     }
     return render(request, 'home.html', context)
 
