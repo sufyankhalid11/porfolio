@@ -188,7 +188,6 @@
                 <ul class="navbar-nav align-items-center gap-4">
                     <li class="nav-item"><a class="nav-link fw-medium" href="#about">About Me</a></li>
                     <li class="nav-item"><a class="nav-link fw-medium" href="#projects">Portfolio</a></li>
-                    <!-- Yahan Blogs ka nav item add kiya hai -->
                     <li class="nav-item"><a class="nav-link fw-medium" href="#blogs">Blogs</a></li>
                     <li class="nav-item">
                         <button id="darkModeToggle" class="btn btn-outline-dark rounded-pill px-3 py-1 btn-sm" onclick="toggleDarkMode()">
@@ -206,11 +205,9 @@
         <div class="row align-items-center">
             <div class="col-lg-7">
                 <div class="d-flex gap-5 mb-4 text-muted small fw-semibold">
-                    <div><span class="fs-4 fw-bold text-dark d-block">GEN-Z</span>
-                    </div>
+                    <div><span class="fs-4 fw-bold text-dark d-block">GEN-Z</span></div>
                 </div>
                 
-                <!-- High-Impact Bold Typography -->
                 <div class="mb-4">
                     <h1 class="display-1 fw-bold tracking-tight mb-0" style="font-size: clamp(3.5rem, 6vw, 5rem); line-height: 1.05;">
                         Muhammad <br>Sufyan Khalid
@@ -235,13 +232,11 @@
                 <div class="d-flex gap-3 flex-wrap">
                     <a href="#projects" class="btn btn-dark-custom btn-lg shadow-sm">Explore Works</a>
                     
-                    
-{% if profile.resume %}
-    <a href="{{ profile.resume_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-dark btn-lg rounded-pill px-4">
-        <i class="fa-solid fa-file-arrow-down me-2"></i> Download CV
-    </a>
-{% endif %}
-                   
+                    {% if profile.resume %}
+                        <a href="{{ profile.resume.url }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-dark btn-lg rounded-pill px-4">
+                            <i class="fa-solid fa-file-arrow-down me-2"></i> Download CV
+                        </a>
+                    {% endif %}
 
                     <a href="{% url 'admin:index' %}" target="_blank" class="btn btn-outline-secondary btn-lg rounded-pill px-4">Admin Dashboard</a>
                 </div>
@@ -259,13 +254,12 @@
         </div>
     </header>
 
-
     <!-- About Section -->
     <section id="about" class="container py-5 border-top border-bottom my-5">
         <div class="row align-items-center">
             <div class="col-lg-6">
                 <h2 class="fw-bold mb-3">About Me</h2>
-                <p class="text-secondary leading-relaxed">I am a Data Science undergraduate, software engineer, and technology founder focused on architecting scalable systems that drive measurable business impact. As the Co-founder of Data Shata, I merge deep technical depth in backend infrastructure and data engineering with a research-driven, agile approach to product innovation. Passionate about tackling ambiguous technical challenges through modern engineering principles, I transform complex data into robust, market-ready solutions.</p>
+                <p class="text-secondary leading-relaxed">I am a Data Science undergraduate, software engineer, and technology founder focused on architecting scalable systems that drive measurable business impact. As the Founder of Data Insights, I merge deep technical depth in backend infrastructure and data engineering with a research-driven, agile approach to product innovation. Passionate about tackling ambiguous technical challenges through modern engineering principles, I transform complex data into robust, market-ready solutions.</p>
             </div>
             <div class="col-lg-6 text-lg-end">
                 <p class="text-muted small uppercase tracking-wider font-monospace">FAST NUCES LAHORE • 2025–2029</p>
@@ -386,6 +380,35 @@
             {% empty %}
                 <div class="col-12 text-center py-5">
                     <p class="text-muted">No portfolio projects uploaded yet.</p>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Blogs Section -->
+    <section id="blogs" class="container py-5">
+        <div class="mb-4">
+            <span class="text-muted small uppercase tracking-wider fw-bold">INSIGHTS</span>
+            <h2 class="fw-bold display-6 mt-1">Latest Blog Posts</h2>
+        </div>
+        <div class="row g-4 justify-content-center">
+            {% for post in posts %}
+                <div class="col-md-4">
+                    <div class="card minimal-card h-100 float-hover p-4 d-flex flex-column">
+                        {% if post.image %}
+                            <img src="{{ post.image.url }}" class="card-img-custom mb-3" alt="{{ post.title }}">
+                        {% endif %}
+                        <span class="text-muted small font-monospace mb-2">{{ post.created_at|date:"F d, Y" }}</span>
+                        <h3 class="card-title fw-bold h5 mb-2">{{ post.title }}</h3>
+                        <p class="card-text text-secondary small mb-4">{{ post.content|truncatewords:20 }}</p>
+                        <div class="mt-auto">
+                            <span class="text-dark fw-semibold small">Read Full Post &rarr;</span>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="col-12 text-center py-4">
+                    <p class="text-muted small">No blog posts available yet. Head to the <a href="{% url 'admin:index' %}" class="fw-bold">Admin Panel</a> to publish your first post!</p>
                 </div>
             {% endfor %}
         </div>
