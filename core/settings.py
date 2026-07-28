@@ -185,3 +185,32 @@ UNFOLD = {
         ],
     },
 }
+
+JAZZMIN_SETTINGS = {
+    # Title on the login screen
+    "site_title": "Data Insights Admin",
+    "site_header": "Data Insights",
+    "site_brand": "Data Insights Dashboard",
+    "welcome_sign": "Welcome to Data Insights Control Panel",
+    "copyright": "Data Insights Ltd",
+    
+    # UI Customizer
+    "show_ui_builder": True,
+    
+    # Icons for apps and models (using Font Awesome icons)
+    "icons": {
+        "auth": "fas fa-users-cog",
+        "auth.user": "fas fa-user",
+        "auth.Group": "fas fa-users",
+        "Base.Project": "fas fa-project-diagram",
+        "Base.Experience": "fas fa-briefcase",
+        "Base.Skill": "fas fa-tools",
+        "Base.ContactMessage": "fas fa-envelope",
+        "Base.UserProfile": "fas fa-id-card",
+    },
+    
+    # Custom links to append to app app list
+    "usermenu_links": [
+        {"model": "auth.user"}
+    ],
+}
