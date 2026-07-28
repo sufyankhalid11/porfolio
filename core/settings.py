@@ -139,3 +139,23 @@ CLOUDINARY_STORAGE = {
     'API_KEY': os.environ.get('CLOUDINARY_API_KEY'),
     'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET'),
 }
+
+UNFOLD = {
+  "SITE_TITLE": "Admin Panel",
+  "SITE_HEADER": "Data Insights Dashboard",
+  "SIDEBAR": {
+    "navigation": [
+      {
+        "title": "Navigation",
+        "separator": True,
+        "items": [
+          {
+            "title": "Dashboard",
+            "icon": "dashboard",
+            "link": "/admin/",
+          },
+        ],
+      },
+    ],
+  },
+}
