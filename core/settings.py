@@ -195,7 +195,7 @@ JAZZMIN_SETTINGS = {
     "copyright": "Data Insights Ltd",
     
     # UI Customizer
-    "show_ui_builder": True,
+    "show_ui_builder": False,
     
     # Icons for apps and models (using Font Awesome icons)
     "icons": {
