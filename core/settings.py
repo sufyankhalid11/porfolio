@@ -9,6 +9,9 @@ https://docs.djangoproject.com/en/6.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
+from dotenv import load_dotenv
+
+load_dotenv()
 
 from pathlib import Path
 import os
@@ -141,21 +144,43 @@ CLOUDINARY_STORAGE = {
 }
 
 UNFOLD = {
-  "SITE_TITLE": "Admin Panel",
-  "SITE_HEADER": "Data Insights Dashboard",
-  "SIDEBAR": {
-    "navigation": [
-      {
-        "title": "Navigation",
-        "separator": True,
-        "items": [
-          {
-            "title": "Dashboard",
-            "icon": "dashboard",
-            "link": "/admin/",
-          },
+    "SITE_TITLE": "Data Insights Admin",
+    "SITE_HEADER": "Data Insights Dashboard",
+    "SITE_SUB_HEADER": "Portfolio & Client Management",
+    "SITE_SYMBOL": "speed",  # Google Material Symbol icon
+    "SHOW_HISTORY": True,
+    "SHOW_VIEW_ON_SITE": True,
+    "COLORS": {
+        "primary": {
+            "50": "250 245 255",
+            "100": "243 232 255",
+            "200": "233 213 255",
+            "300": "216 180 254",
+            "400": "192 132 252",
+            "500": "168 85 247",
+            "600": "147 51 234",
+            "700": "126 34 206",
+            "800": "107 33 168",
+            "900": "88 28 135",
+            "950": "59 7 100",
+        },
+    },
+    "SIDEBAR": {
+        "show_search": True,
+        "show_all_applications": True,
+        "navigation": [
+            {
+                "title": "Portfolio Management",
+                "separator": True,
+                "items": [
+                    {
+                        "title": "Dashboard",
+                        "icon": "dashboard",
+                        "link": "/admin/",
+                    },
+                    # Aap yahan apne models ke specific links bhi add kar sakte hain
+                ],
+            },
         ],
-      },
-    ],
-  },
+    },
 }
