@@ -46,3 +46,7 @@ def home(request):
 def project_detail(request, pk):
     project = get_object_or_404(Project, pk=pk)
     return render(request, 'project_detail.html', {'project': project})
+
+def blog_detail(request, pk):
+    blog = get_object_or_404(BlogPost, pk=pk)
+    return render(request, 'blog_detail.html', {'blog': blog})

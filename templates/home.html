@@ -402,7 +402,7 @@
                         <h3 class="card-title fw-bold h5 mb-2">{{ post.title }}</h3>
                         <p class="card-text text-secondary small mb-4">{{ post.content|truncatewords:20 }}</p>
                         <div class="mt-auto">
-                            <span class="text-dark fw-semibold small">Read Full Post &rarr;</span>
+                            <a href="{% url 'blog_detail' post.pk %}" class="text-dark fw-semibold small text-decoration-none">Read Full Post &rarr;</a>
                         </div>
                     </div>
                 </div>
